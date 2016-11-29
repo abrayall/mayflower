@@ -110,7 +110,7 @@
 
 	}
 
-	function declare() {
+	$.fn.declare = declare = function() {
 		var args = arguments,
 			name = args[0]
 			hasBase = $.isFunction(args[1]),
@@ -144,6 +144,7 @@
 	function module(name, exports) {
 		return set(window, '$' + name, set(window, name, exports))
 	}
+
 
 	$.fn.exists = function() {
 		return this.length > 0
