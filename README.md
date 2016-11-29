@@ -1,22 +1,19 @@
 # Mayflower.js
-==============
+
 Mayflower.js is a super lightweight and simple javascript library that provides class (inheritence) support and a basic template based widget framework.
 
 Mayflower.js was designed to be lightweight, small and fast.  It is simple to setup, use and learn.  It is intended to help aid javascript developement, not get in the away.
 
 
-### Dependencies
-----------------
+## Dependencies
 jQuery is the only Mayflower dependency.  jQuery was choosen as a foundation for Mayflower, because jQuery is lightweight, small and fast as well.
 
 
-### Install
------------
+## Install
 Download lang.js and/or widgets.js and make them available in your html code.
 
 
-### Examples
-------------
+## Examples
 #### Loading Mayflower.js
 ```html
 <html>
@@ -47,7 +44,7 @@ Download lang.js and/or widgets.js and make them available in your html code.
 </html>
 ```
 
-### Hello, World Class with Inheritance
+#### Hello, World Class with Inheritance
 ```html
 <html>
     <body>
@@ -74,7 +71,7 @@ Download lang.js and/or widgets.js and make them available in your html code.
 </html>
 ```
 
-### Hello, World Class with Constructor
+#### Hello, World Class with Constructor
 ```html
 <html>
     <body>
@@ -98,7 +95,7 @@ Download lang.js and/or widgets.js and make them available in your html code.
 </html>
 ```
 
-### Hello, World Class in Seperate File
+#### Hello, World Class in Seperate File
 ##### js/hello.js
 ```javascript
 $.declare('my.HelloWorld', {
@@ -126,7 +123,7 @@ $.declare('my.HelloWorld', {
 </html>
 ```
 
-### Hello, World Widget
+#### Hello, World Widget
 ##### js/hello.js
 ```javascript
 $.declare('my.HelloWorld', Widget, {
@@ -152,7 +149,7 @@ $.declare('my.HelloWorld', Widget, {
 </html>
 ```
 
-### Hello, World Template Widget
+#### Hello, World Template Widget
 ##### js/hello.js
 ```javascript
 $.declare('my.HelloWorld', TemplateWidget, {
@@ -176,7 +173,7 @@ $.declare('my.HelloWorld', TemplateWidget, {
 </html>
 ```
 
-### Hello, World Template Widget in Markup
+#### Hello, World Template Widget in Markup
 ##### js/hello.js
 ```javascript
 $.declare('my.HelloWorld', TemplateWidget, {
