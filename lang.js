@@ -26,7 +26,7 @@
 		}
 
 		object[parts[parts.length - 1]] = value
-   		return value
+		return value
 	}
 
 	function parse(json) {
