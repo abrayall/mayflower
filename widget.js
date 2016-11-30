@@ -66,7 +66,7 @@ lang.declare('widget.Widget', {
 
 	defaults: {},
 
-	__constructor: function(options, node) {}
+	__constructor: function(options, node) {
 		this.setNode(node || $.parseHTML("<div></div>")[0])
 		this.options = $.extend({}, this.defaults, options)
 	},
