@@ -1,6 +1,6 @@
 $.fn.widgets = function() { widget.factory.parse() }
 
-lang.declare('Factory', {
+lang.declare('widget._Factory', {
 
 	registry: {},
 
@@ -18,7 +18,7 @@ lang.declare('Factory', {
 	},
 
 	create: function(clazz, options, node) {
-		var widget = this.register(this.instantiate(clazz, options, node))
+		var widget = this.register(this.instantiate(clazz, options, node.jquery == undefined ? node : node.get(0)))
 		widget.start()
 		return widget
 	},
@@ -199,7 +199,7 @@ lang.declare('TemplateWidget', widget.TemplateWidget, {
 })
 
 lang.module('widget', {
-	factory: new Factory(),
+	factory: new widget._Factory(),
 
 	get: function(id, defaultValue) {
 		return widget.factory.registry[id['getAttribute'] ? id.getAttribute('widgetId') : id['attr'] ? id.attr('widgetId') : id] || defaultValue

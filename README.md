@@ -66,7 +66,7 @@ Download mayflower.js and make them available in your html code.
 			})
 
 			var hello = new my.HelloWorld2()
-			hello.run()
+			hello.run('Fred')
 		</script>
 	</body>
 </html>
@@ -127,7 +127,7 @@ $.declare('my.HelloWorld', {
 #### Hello, World Widget
 ##### js/hello.js
 ```javascript
-$.declare('my.HelloWorld', Widget, {
+$.declare('my.HelloWorld', widget.Widget, {
 	start: function() {
 		this.$node.html('Hello, World')
 	}
@@ -152,7 +152,7 @@ $.declare('my.HelloWorld', Widget, {
 #### Hello, World Template Widget
 ##### js/hello.js
 ```javascript
-$.declare('my.HelloWorld', TemplateWidget, {
+$.declare('my.HelloWorld', widget.TemplateWidget, {
 	template: '<div>Hello, World</div>'
 })
 ```
@@ -175,7 +175,7 @@ $.declare('my.HelloWorld', TemplateWidget, {
 #### Hello, World Template Widget in Markup
 ##### js/hello.js
 ```javascript
-$.declare('my.HelloWorld', TemplateWidget, {
+$.declare('my.HelloWorld', widget.TemplateWidget, {
 	template: '<div>Hello, World</div>'
 })
 ```
