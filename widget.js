@@ -62,11 +62,11 @@ lang.declare('Factory', {
 	}
 });
 
-lang.declare('Widget', {
+lang.declare('widget.Widget', {
 
 	defaults: {},
 
-	__constructor: function(options, node) {
+	__constructor: function(options, node) {}
 		this.setNode(node || $.parseHTML("<div></div>")[0])
 		this.options = $.extend({}, this.defaults, options)
 	},
@@ -103,7 +103,7 @@ lang.declare('Widget', {
 	}
 })
 
-lang.declare('TemplateWidget', Widget, {
+lang.declare('widget.TemplateWidget', widget.Widget, {
 
 	template: '<div></div>',
 
@@ -181,6 +181,20 @@ lang.declare('TemplateWidget', Widget, {
 		lang.set(object, attribute, value)
 		if (wrap == true)
 			lang.set(object, '$' + attribute.replace(/\./g, '.$'), $(value))
+	}
+})
+
+lang.declare('Widget', widget.Widget, {
+	__constructor: function(options, node) {
+		console.log("Deprecated class Widget, please use widget.Widget")
+		this.__base(options, node)
+	}
+})
+
+lang.declare('TemplateWidget', widget.TemplateWidget, {
+	__constructor: function(options, node) {
+		console.log("Deprecated class TemplateWidget, please use widget.TemplateWidget")
+		this.__base(options, node)
 	}
 })
 

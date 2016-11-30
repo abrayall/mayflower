@@ -110,7 +110,7 @@
 
 	}
 
-	$.fn.declare = declare = function() {
+	$.fn.declare = $.declare = declare = function() {
 		var args = arguments,
 			name = args[0]
 			hasBase = $.isFunction(args[1]),
@@ -142,7 +142,7 @@
 	}
 
 	function module(name, exports) {
-		return set(window, '$' + name, set(window, name, exports))
+		return set(window, name, $.extend(get(window, name, {}), exports))
 	}
 
 
