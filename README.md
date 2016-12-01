@@ -96,7 +96,7 @@ Download mayflower.js and make them available in your html code.
 </html>
 ```
 
-#### Hello, World Class in Seperate File
+#### Hello, World Class in Separate File
 ##### js/hello.js
 ```javascript
 $.declare('my.HelloWorld', {
