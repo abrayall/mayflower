@@ -13,12 +13,11 @@ lang.declare('widget._Factory', {
 			if (child.getAttribute('widgetId') == undefined)
 				this.create($(child).attr('data-widget-type'), this.attributes(child), child)
 		}, this))
-
 		return this.registry
 	},
 
 	create: function(clazz, options, node) {
-		var widget = this.register(this.instantiate(clazz, options, node.jquery == undefined ? node : node.get(0)))
+		var widget = this.register(this.instantiate(clazz, options, node == undefined || node.jquery == undefined ? node : node.get(0)))
 		widget.start()
 		return widget
 	},
