@@ -1,6 +1,6 @@
 #!/bin/bash
 
-declare -x VERSION=1.0.0
+declare -x VERSION=1.0.1
 declare -x HEADER="// mayflower.js v$VERSION"
 
 rm -rf build
