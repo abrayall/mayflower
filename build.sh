@@ -4,8 +4,13 @@ declare -x VERSION=1.0.0
 declare -x HEADER="// mayflower.js v$VERSION"
 
 rm -rf build
-mkdir build
+mkdir -p build/work
 
 echo $HEADER > build/mayflower.js
+echo $HEADER > build/mayflower.min.js
+
 cat lang.js widget.js >> build/mayflower.js
 cp build/mayflower.js build/mayflower-$VERSION.js
+
+curl -X POST -s --data-urlencode "input@build/mayflower.js" https://javascript-minifier.com/raw >> build/mayflower.min.js
+cp build/mayflower.min.js build/mayflower-$VERSION.min.js
