@@ -176,7 +176,7 @@ lang.declare('widget.TemplateWidget', widget.Widget, {
 		return target
 	},
 
-	_set(object, attribute, value, wrap) {
+	_set: function(object, attribute, value, wrap) {
 		lang.set(object, attribute, value)
 		if (wrap == true)
 			lang.set(object, '$' + attribute.replace(/\./g, '.$'), $(value))
