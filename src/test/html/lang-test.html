@@ -1,0 +1,103 @@
+<html>
+	<body>
+		<script src="javascript/jquery.min.js"></script>
+		<script src="javascript/lang.js"></script>
+		<script>
+			$.declare('my.HelloWorld', {
+				s: 's',
+				f: 'foo',
+
+				__constructor: function(value) {
+					this.value = value
+				},
+
+				run: function(parameter) {
+					return 'hello, world ' + this.value + (parameter ? ' ' + parameter : "")
+				},
+
+				toString: function() {
+					return this.value
+				},
+
+				valueOf: function() {
+					return this.value
+				},
+
+				bar: function() {
+					return 'bar'
+				},
+
+				test: function() {
+					return 't'
+				},
+
+				hello: function() {
+					return 'goodbye'
+				}
+			})
+
+			$.declare('my.HelloWorld2', my.HelloWorld, {
+				__constructor: function(value) {
+					this.__super(value)
+					this.foo = 'foo'
+				},
+
+				run: function(parameter) {
+					return this.__super(parameter) + ' ' + this.foo + ' ' + this.__super('done')
+				},
+
+				toString: function() {
+					return this.foo
+				},
+
+				valueOf: function() {
+					return this.value
+				}
+			})
+
+			$.declare('my.Mixin', {
+				f: 'f',
+				working: 'working',
+				test: function() {
+					return 'test'
+				}
+			})
+
+			$.declare('my.HelloWorld3', [my.HelloWorld2, my.Mixin], {
+				run: function(parameter) {
+					return this.bar() + this.foo + parameter + this.__super() + ' ' + this.working + ' ' + this.f + ' ' + this.test()
+				}
+			})
+
+			function assert(condition, message) {
+				if (condition == false)
+					throw message || "Assertion failed";
+			}
+
+			var hello = new my.HelloWorld('Moe')
+			var hello2 = new my.HelloWorld2('Fred')
+			var hello3 = new my.HelloWorld3('Mack')
+
+			var hello4 = $.declare(null, my.HelloWorld3, {
+				f: 't',
+				hello: function() {
+					return this.__super() + ' ' + this.value
+				}
+			})
+
+			assert(hello.run() == 'hello, world Moe')
+			assert(hello.run('bar') == 'hello, world Moe bar')
+			assert(hello.toString() == 'Moe')
+			assert(hello.valueOf() == 'Moe')
+
+			assert(hello2.run() == 'hello, world Fred foo hello, world Fred done')
+			assert(hello2.run('bar') == 'hello, world Fred bar foo hello, world Fred done')
+			assert(hello2.toString() == 'foo')
+			assert(hello2.valueOf() == 'Fred')
+
+			assert(hello3.run('something') == 'barfoosomethinghello, world Mack foo hello, world Mack done working f test')
+			assert(new hello4('Zack').hello() == 'goodbye Zack')
+			console.log('success')
+		</script>
+	</body>
+</html>
