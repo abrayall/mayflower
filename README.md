@@ -60,7 +60,7 @@ Download mayflower.js and make them available in your html code.
 
 			$.declare('my.HelloWorld2', my.HelloWorld, {
 				run: function(parameter1) {
-					this.__base()
+					this.__super()
 					alert(parameter1)
 				}
 			})

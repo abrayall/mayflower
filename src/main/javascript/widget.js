@@ -186,14 +186,14 @@ lang.declare('widget.TemplateWidget', widget.Widget, {
 lang.declare('Widget', widget.Widget, {
 	__constructor: function(options, node) {
 		console.log("Deprecated class Widget, please use widget.Widget")
-		this.__base(options, node)
+		this.__super(options, node)
 	}
 })
 
 lang.declare('TemplateWidget', widget.TemplateWidget, {
 	__constructor: function(options, node) {
 		console.log("Deprecated class TemplateWidget, please use widget.TemplateWidget")
-		this.__base(options, node)
+		this.__super(options, node)
 	}
 })
 
