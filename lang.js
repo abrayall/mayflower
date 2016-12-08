@@ -29,10 +29,6 @@
 		return value
 	}
 
-	function parse(json) {
-		return $.parseJSON(json)
-	}
-
 	function extend(object, method, fn) {
 		object[method] = $.proxy(fn, object)
 		return object
@@ -114,7 +110,7 @@
 		var args = arguments,
 			name = args[0]
 			hasBase = $.isFunction(args[1]),
-			base = hasBase? args[1] : emptyBase,
+			base = hasBase ? args[1] : emptyBase,
 			props = args[hasBase ? 2 : 1] || {},
 			staticProps = args[hasBase ? 3 : 2],
 			result = props.__constructor || (hasBase && base.prototype.__constructor)?
@@ -157,7 +153,6 @@
 		'module': module,
 		'declare': declare,
 		'extend': extend,
-		'watch': watch,
-		'parse': parse
+		'watch': watch
 	})
 }).call(jQuery);
