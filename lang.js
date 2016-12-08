@@ -39,7 +39,7 @@
 		object[method] = $.proxy(function() {
 			if (base) base.apply(this, arguments)
 			fn.apply(context, arguments)
-		}, context || window)
+		}, context || window || global)
 		return object
 	}
 
@@ -121,7 +121,7 @@
 		if (!hasBase) {
 			result.prototype = props;
 			result.prototype.__self = result.prototype.constructor = result;
-			return set(window, name, $.extend(result, staticProps));
+			return set(window || global, name, $.extend(result, staticProps));
 		}
 
 		$.extend(result, base);
@@ -134,11 +134,11 @@
 		override(basePtp, resultPtp, props);
 		staticProps && override(base, result, staticProps);
 
-		return set(window, name, result)
+		return set(window || global, name, result)
 	}
 
 	function module(name, exports) {
-		return set(window, name, $.extend(get(window, name, {}), exports))
+		return set(window || global, name, $.extend(get(window || global, name, {}), exports))
 	}
 
 
