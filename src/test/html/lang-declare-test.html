@@ -69,11 +69,6 @@
 				}
 			})
 
-			function assert(condition, message) {
-				if (condition == false)
-					throw message || "Assertion failed";
-			}
-
 			var hello = new my.HelloWorld('Moe')
 			var hello2 = new my.HelloWorld2('Fred')
 			var hello3 = new my.HelloWorld3('Mack')
@@ -85,18 +80,18 @@
 				}
 			})
 
-			assert(hello.run() == 'hello, world Moe')
-			assert(hello.run('bar') == 'hello, world Moe bar')
-			assert(hello.toString() == 'Moe')
-			assert(hello.valueOf() == 'Moe')
+			$.assert(hello.run() == 'hello, world Moe')
+			$.assert(hello.run('bar') == 'hello, world Moe bar')
+			$.assert(hello.toString() == 'Moe')
+			$.assert(hello.valueOf() == 'Moe')
 
-			assert(hello2.run() == 'hello, world Fred foo hello, world Fred done')
-			assert(hello2.run('bar') == 'hello, world Fred bar foo hello, world Fred done')
-			assert(hello2.toString() == 'foo')
-			assert(hello2.valueOf() == 'Fred')
+			$.assert(hello2.run() == 'hello, world Fred foo hello, world Fred done')
+			$.assert(hello2.run('bar') == 'hello, world Fred bar foo hello, world Fred done')
+			$.assert(hello2.toString() == 'foo')
+			$.assert(hello2.valueOf() == 'Fred')
 
-			assert(hello3.run('something') == 'barfoosomethinghello, world Mack foo hello, world Mack done working f test')
-			assert(new hello4('Zack').hello() == 'goodbye Zack')
+			$.assert(hello3.run('something') == 'barfoosomethinghello, world Mack foo hello, world Mack done working f test')
+			$.assert(new hello4('Zack').hello() == 'goodbye Zack')
 			console.log('success')
 		</script>
 	</body>

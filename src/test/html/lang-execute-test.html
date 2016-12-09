@@ -1,0 +1,29 @@
+<html>
+	<body>
+		<script src="javascript/jquery.min.js"></script>
+		<script src="javascript/lang.js"></script>
+		<script>
+			$.assert($.execute(function() {
+				return 5
+			}) == 5)
+
+			$.assert($.execute(function() {
+				return 1 + 1
+			}) == 2)
+
+			$.assert($.attempt(function() {
+				return foo - bar
+			}) == null)
+
+			$.assert($.attempt(function() {
+				return foo - bar
+			}, 'foo') == 'foo')
+
+			$.assert($.attempt(function() {
+				return foo - bar
+			}, function() { return 'bar'}) == 'bar')
+
+			console.log('success')
+		</script>
+	</body>
+</html>

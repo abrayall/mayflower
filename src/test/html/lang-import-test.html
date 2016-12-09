@@ -1,0 +1,15 @@
+<html>
+	<body>
+		<script src="javascript/jquery.min.js"></script>
+		<script src="javascript/lang.js"></script>
+		<script>
+			$.import('foo')
+			$.import('widget')
+
+			$.assert(widget.Widget != null)
+			$.assert(foobar.Foobar != null)
+			$.assert(imported == true)
+			console.log('success')
+		</script>
+	</body>
+</html>

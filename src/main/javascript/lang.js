@@ -43,12 +43,40 @@
 		return object
 	}
 
-	var hasIntrospection = (function(){'_';}).toString().indexOf('_') > -1
+	$.fn.exists = function() {
+		return this.length > 0
+	}
+
+	$.assert = assert = function(condition, message) {
+		if (condition == false)
+			throw message || "Assertion failed"
+	}
 
 	$.instantiate = instantiate = Object.create || function(clazz) {
-		var inheritance = function() {};
-		inheritance.prototype = clazz;
-		return new inheritance();
+		var inheritance = function() {}
+		inheritance.prototype = clazz
+		return new inheritance()
+	}
+
+	$.execute = execute = function(code) {
+		return $.isFunction(code) ? code() : code
+	}
+
+	$.attempt = attempt = function(code, defaultValue) {
+		try {
+			return $.execute(code)
+		} catch(e) {
+			return $.execute(defaultValue)
+		}
+	}
+
+	var hasIntrospection = (function(){'_';}).toString().indexOf('_') > -1
+	function scripts() { return $(document).find('script') }
+	function hasScript(name) {
+		name = new RegExp(name, 'gi')
+		return scripts().filter(function(index, script) {
+			return name.test($(script).attr('src'))
+		}).length != 0
 	}
 
 	function override(base, result, add) {
@@ -69,7 +97,16 @@
 		return result
 	}
 
-	$.fn.declare = $.declare = declare = function(name, bases, properties) {
+	function module(name, exports) {
+		return set(window || global, name, $.extend(get(window || global, name, {}), exports))
+	}
+
+	var provided = {}
+	$.provide = provide = function(name) {
+		provided[name] = name
+	}
+
+	$.declare = declare = function(name, bases, properties) {
 		if ($.isPlainObject(bases)) {
 			properties = bases
 			bases = [function() {}]
@@ -93,22 +130,27 @@
 		return name ? set(window || global, name, result) : result
 	}
 
-	function module(name, exports) {
-		return set(window || global, name, $.extend(get(window || global, name, {}), exports))
-	}
+	var root = 'javascript'
+	scripts().each(function(index, script) {
+		var src = $(script).attr('src')
+		if (src && (src.indexOf('lang.js') != -1 || src.indexOf('mayflower') != -1))
+			root = src.substring(0, src.lastIndexOf('/'))
+	})
 
-	$.fn.exists = function() {
-		return this.length > 0
+	$.import = $.require = require = function(name, callback) {
+		var script = root + '/' + name.replace('.', '/') + '.js'
+		hasScript(script) == true || provided[name] != undefined ? execute(callback) : execute(function() {
+			callback ? $.getScript(script, callback) : $("head").append($('<script></script>', {
+				async: true,
+				type: 'text/javascript',
+				src: script
+			}))
+		})
 	}
 
 	return module('lang', {
-		'get': get,
-		'set': set,
-		'size': size,
-		'module': module,
-		'declare': declare,
-		'extend': extend,
-		'watch': watch,
-		'instantiate': instantiate
+		'get': get, 'set': set, 'size': size, 'assert': assert,
+		'module': module, 'import': require, 'require': require, 'declare': declare, 'extend': extend,
+		'watch': watch, 'instantiate': instantiate, 'execute': execute, 'attempt': attempt
 	})
-}).call(jQuery);
+}).call(jQuery)
