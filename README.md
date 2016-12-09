@@ -1,13 +1,13 @@
 <img src="https://maxcdn.icons8.com/iOS7/PNG/100/Transport/sailing_ship_large_filled-100.png" title="Sailing Ship Large Filled" width="100">
 # Mayflower.js
 
-Mayflower.js is a super lightweight and simple javascript library that provides class (inheritence) support and a basic template based widget framework.
+Mayflower.js is a simple JavaScript library that provides class (inheritence) support and a basic template based widget framework.
 
-Mayflower.js was designed to be lightweight, small and fast.  It is simple to setup, use and learn.  It is intended to help aid javascript development, not get in the away.
+Mayflower.js is designed to be lightweight, small, and fast.  It is simple to setup, use, and learn.  It is intended to help aid JavaScript development, not get in the away.
 
 
 ## Dependencies
-jQuery is the only Mayflower dependency.  jQuery was chosen as a foundation for Mayflower, because jQuery is lightweight, small and fast as well.
+jQuery is the only Mayflower dependency.  jQuery was chosen as a foundation for Mayflower, because jQuery is lightweight, small, and fast as well.
 
 
 ## Install
