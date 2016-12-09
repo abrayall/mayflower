@@ -11,7 +11,7 @@ jQuery is the only Mayflower dependency.  jQuery was chosen as a foundation for 
 
 
 ## Install
-Download mayflower.js and make them available in your html code.
+Download mayflower.js and make it available in your html code.
 
 
 ## Examples
