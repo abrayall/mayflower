@@ -115,8 +115,8 @@ $.declare('my.HelloWorld', {
 	<body>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/mayflower.js"></script>
-		<script src="js/hello.js"></script>
 		<script>
+			$.import('hello.js')
 			var hello = new my.HelloWorld('Fred')
 			hello.run()
 		</script>
@@ -141,8 +141,8 @@ $.declare('my.HelloWorld', widget.Widget, {
 		<div id="widget"></div>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/mayflower.js"></script>
-		<script src="js/hello.js"></script>
 		<script>
+			$.import('hello.js')
 			widget.create('my.HelloWorld', {}, $("#widget"))
 		</script>
 	</body>
@@ -164,8 +164,8 @@ $.declare('my.HelloWorld', widget.TemplateWidget, {
 		<div id="widget"></div>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/mayflower.js"></script>
-		<script src="js/hello.js"></script>
 		<script>
+			$.import('hello.js')
 			widget.create('my.HelloWorld', {}, $("#widget"))
 		</script>
 	</body>
@@ -187,8 +187,8 @@ $.declare('my.HelloWorld', widget.TemplateWidget, {
 		<div data-widget-type="my.HelloWorld"></div>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/mayflower.js"></script>
-		<script src="js/hello.js"></script>
 		<script>
+			$.import('hello.js')
 			$(document).ready(function() {
 				$(document).widgets()
 			})
