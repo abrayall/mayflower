@@ -1,6 +1,6 @@
 #!/bin/bash
 
-declare -x VERSION=1.1.0
+VERSION=`grep "version" project.properties  | cut -d '=' -f2`
 declare -x HEADER="// mayflower.js v$VERSION"
 
 rm -rf build
