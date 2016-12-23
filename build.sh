@@ -1,19 +1,20 @@
 #!/bin/bash
 
+NAME=`grep "name" project.properties  | cut -d '=' -f2`
 VERSION=`grep "version" project.properties  | cut -d '=' -f2`
-declare -x HEADER="// mayflower.js v$VERSION"
+declare -x HEADER="// $NAME.js v$VERSION"
 
 rm -rf build
 mkdir -p build/work
 
-echo $HEADER > build/mayflower.js
-echo $HEADER > build/mayflower.min.js
+echo $HEADER > build/$NAME.js
+echo $HEADER > build/$NAME.min.js
 
-echo "[build] building mayflower v$VERSION..."
-echo "[build] generating mayflower.js..."
-cat src/main/javascript/lang.js src/main/javascript/widget.js >> build/mayflower.js
-cp build/mayflower.js build/mayflower-$VERSION.js
+echo "[build] building $NAME v$VERSION..."
+echo "[build] generating $NAME.js..."
+cat src/main/javascript/lang.js src/main/javascript/widget.js >> build/$NAME.js
+cp build/$NAME.js build/$NAME-$VERSION.js
 
-echo "[build] generating mayflower.min.js..."
-curl -X POST -s --data-urlencode "input@build/mayflower.js" https://javascript-minifier.com/raw >> build/mayflower.min.js
-cp build/mayflower.min.js build/mayflower-$VERSION.min.js
+echo "[build] generating $NAME.min.js..."
+curl -X POST -s --data-urlencode "input@build/$NAME.js" https://javascript-minifier.com/raw >> build/$NAME.min.js
+cp build/$NAME.min.js build/$NAME-$VERSION.min.js
