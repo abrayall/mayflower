@@ -12,7 +12,7 @@ echo $HEADER > build/$NAME.min.js
 
 echo "[build] building $NAME v$VERSION..."
 echo "[build] generating $NAME.js..."
-cat src/main/javascript/lang.js src/main/javascript/widget.js >> build/$NAME.js
+cat src/main/javascript/lang.js src/main/javascript/io.js src/main/javascript/widget.js >> build/$NAME.js
 cp build/$NAME.js build/$NAME-$VERSION.js
 
 echo "[build] generating $NAME.min.js..."
