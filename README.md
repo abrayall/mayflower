@@ -1,7 +1,7 @@
 <img src="https://maxcdn.icons8.com/iOS7/PNG/100/Transport/sailing_ship_large_filled-100.png" title="Sailing Ship Large Filled" width="100">
 # Mayflower.js
 
-Mayflower.js is a simple JavaScript library that provides class (inheritence) support and a basic template based widget framework.
+Mayflower.js is a simple JavaScript library that provides class (inheritence and mixin) support and a basic template based widget framework.
 
 Mayflower.js is designed to be lightweight, small, and fast.  It is simple to setup, use, and learn.  It is intended to help aid JavaScript development, not get in the away.
 
@@ -11,7 +11,7 @@ jQuery is the only Mayflower dependency.  jQuery was chosen as a foundation for 
 
 
 ## Install
-Download mayflower.js and make them available in your html code.
+Download mayflower.js and make it available in your html code.
 
 
 ## Examples
@@ -115,8 +115,8 @@ $.declare('my.HelloWorld', {
 	<body>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/mayflower.js"></script>
-		<script src="js/hello.js"></script>
 		<script>
+			$.import('hello.js')
 			var hello = new my.HelloWorld('Fred')
 			hello.run()
 		</script>
@@ -141,8 +141,8 @@ $.declare('my.HelloWorld', widget.Widget, {
 		<div id="widget"></div>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/mayflower.js"></script>
-		<script src="js/hello.js"></script>
 		<script>
+			$.import('hello.js')
 			widget.create('my.HelloWorld', {}, $("#widget"))
 		</script>
 	</body>
@@ -164,8 +164,8 @@ $.declare('my.HelloWorld', widget.TemplateWidget, {
 		<div id="widget"></div>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/mayflower.js"></script>
-		<script src="js/hello.js"></script>
 		<script>
+			$.import('hello.js')
 			widget.create('my.HelloWorld', {}, $("#widget"))
 		</script>
 	</body>
@@ -187,8 +187,8 @@ $.declare('my.HelloWorld', widget.TemplateWidget, {
 		<div data-widget-type="my.HelloWorld"></div>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/mayflower.js"></script>
-		<script src="js/hello.js"></script>
 		<script>
+			$.import('hello.js')
 			$(document).ready(function() {
 				$(document).widgets()
 			})
