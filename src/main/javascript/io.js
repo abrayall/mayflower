@@ -106,9 +106,9 @@ lang.declare("io.Socket", {
 	}
 })
 
-lang.declare('io.JsonSocket', Socket, {
+lang.declare('io.JsonSocket', io.Socket, {
 	__onMessage: function(message) {
-		return lang.parse(message.data)
+		return JSON.parse(message.data)
 	}
 })
 
