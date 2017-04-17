@@ -88,6 +88,9 @@ lang.declare('widget.Widget', {
 	show: function() { this.$node.show() },
 	hide: function() { this.$node.hide() },
 	toggle: function(value) { this.$node.toggle(value) },
+	isVisible: function() {
+		return this.$node.is(":visible")
+	},
 
 	on: function(node, action, callback) {
 		$(node).on(action, $.proxy(callback, this))
