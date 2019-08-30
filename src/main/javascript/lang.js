@@ -131,11 +131,26 @@
 	}
 
 	var root = 'javascript'
+	var attributes = {}
 	scripts().each(function(index, script) {
 		var src = $(script).attr('src')
-		if (src && (src.indexOf('lang.js') != -1 || src.indexOf('mayflower') != -1))
+		if (src && (src.indexOf('lang.js') != -1 || src.indexOf('mayflower') != -1)) {
 			root = src.substring(0, src.lastIndexOf('/'))
+			$.each(script.attributes, function(index, attribute) {
+				attributes[attribute.name] = attribute.value
+			})
+		}
 	})
+
+	if ((attributes['widget-parse'] || attributes['data-widget-parse']) == "true") {
+		$(document).ready(function() {
+			$(document).widgets()
+		})
+	}
+
+	$.root = function(path) {
+		root = path
+	}
 
 	$.import = $.require = require = function(name, callback) {
 		var script = root + '/' + name.replace('.', '/') + '.js'
@@ -150,7 +165,7 @@
 
 	return module('lang', {
 		'get': get, 'set': set, 'size': size, 'assert': assert,
-		'module': module, 'import': require, 'require': require, 'declare': declare, 'extend': extend,
+		'module': module, 'import': require, 'require': require, 'declare': declare, 'extend': extend, 'root': root, 'attributes': attributes,
 		'watch': watch, 'instantiate': instantiate, 'execute': execute, 'attempt': attempt
 	})
 }).call(jQuery)
