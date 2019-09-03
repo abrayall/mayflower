@@ -6,12 +6,14 @@ lang.declare('widget._Factory', {
 
 	parse: function(node) {
 		node = (node == undefined ? $(":root") : $(node))
-		$.each(node.find("[data-widget-type]").not("[data-widget-type] [data-widget-type]"), $.proxy(function(index, child) {
-			if ($(child).parents().last()[0] != node[0])
-				return
+		$.each(widget.handlers, $.proxy(function(index, handler) {
+			$.each(node.find(handler.query).not(handler.query + " " + handler.query), $.proxy(function(index, child) {
+				if ($(child).parents().last()[0] != node[0])
+					return
 
-			if (child.getAttribute('widgetId') == undefined)
-				this.create($(child).attr('data-widget-type'), this.attributes(child), child)
+				if (child.getAttribute('widgetId') == undefined)
+					this.create($(child).attr(handler.value) || ($.isFunction(handler.value) ? handler.value(child) : handler.value), this.attributes(child), child)
+			}, this))
 		}, this))
 		return this.registry
 	},
@@ -202,6 +204,9 @@ lang.declare('TemplateWidget', widget.TemplateWidget, {
 
 lang.module('widget', {
 	factory: new widget._Factory(),
+	handlers: [
+		{'query': '[data-widget-type]', 'value': 'data-widget-type'}
+	],
 
 	get: function(id, defaultValue) {
 		return widget.factory.registry[id['getAttribute'] ? id.getAttribute('widgetId') : id['attr'] ? id.attr('widgetId') : id] || defaultValue
@@ -213,5 +218,9 @@ lang.module('widget', {
 
 	destroy: function(node) {
 		widget.get(node).destroy()
+	},
+
+	handle: function(query, handler) {
+		widget.handlers.push({'query': query, 'value': handler})
 	}
 })
