@@ -222,5 +222,10 @@ lang.module('widget', {
 
 	handle: function(query, handler) {
 		widget.handlers.push({'query': query, 'value': handler})
+	},
+
+	declare: function(name, bases, properties, tag, handler) {
+		widget.handle(tag, handler || name)
+		return lang.declare(name, bases, properties);
 	}
 })

@@ -5,8 +5,11 @@
 		<script src="../../main/javascript/widget.js"></script>
 		<script>
 			widget.handle('content', 'widget.TemplateWidget')
+			widget.declare('test.widget.TestWidget', widget.TemplateWidget, {
+				template: '<p>This is a test</p>'
+			}, 'foobar')
 		</script>
-		<div data-widget-type="widget.TemplateWidget"></div>
 		<content></content>
+		<foobar>/</foobar>
 	</body>
 </html>
