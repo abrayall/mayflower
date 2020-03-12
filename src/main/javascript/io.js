@@ -11,35 +11,35 @@ lang.declare("io.Rest", {
 		}, this))
 	},
 
-	get: function(url, parameters, complete, error) {
-		return this.ajax('GET', url, {}, parameters, complete, error)
+	get: function(url, parameters, complete, error, options) {
+		return this.ajax('GET', url, {}, parameters, complete, error, options)
 	},
 
-	post: function(url, parameters, complete, error) {
-		return this.ajax('POST', url, {}, parameters, complete, error)
+	post: function(url, parameters, complete, error, options) {
+		return this.ajax('POST', url, {}, parameters, complete, error, options)
 	},
 
-	put: function(url, parameters, complete, error) {
-		return this.ajax('PUT', url, {}, parameters, complete, error)
+	put: function(url, parameters, complete, error, options) {
+		return this.ajax('PUT', url, {}, parameters, complete, error, options)
 	},
 
-	delete: function(url, parameters, complete, error) {
-		return this.ajax('DELETE', url, {}, parameters, complete, error)
+	delete: function(url, parameters, complete, error, options) {
+		return this.ajax('DELETE', url, {}, parameters, complete, error, options)
 	},
 
-	patch: function(url, parameters, complete, error) {
-		return this.ajax('PATCH', url, {}, parameters, complete, error)
+	patch: function(url, parameters, complete, error, options) {
+		return this.ajax('PATCH', url, {}, parameters, complete, error, options)
 	},
 
-	ajax: function(method, url, headers, parameters, complete, error) {
-		return $.ajax({
+	ajax: function(method, url, headers, parameters, complete, error, options) {
+		return $.ajax($.merge({
 			method: method,
 			type: method,
 			url: this.base + url,
 			data: parameters || {},
 			headers: this._headers(headers),
 			withCredentials: true
-		}).done(complete).fail(error || this.error)
+		}, options || {})).done(complete).fail(error || this.error)
 	},
 
 	_headers: function(headers) {
