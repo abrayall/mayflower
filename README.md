@@ -197,5 +197,3 @@ $.declare('my.HelloWorld', widget.TemplateWidget, {
 	</body>
 </html>
 ```
-
-## jthie.  test
